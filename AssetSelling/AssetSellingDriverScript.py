@@ -18,8 +18,9 @@ if __name__ == "__main__":
     param_list = list(params)
     sheet2 = pd.read_excel("asset_selling_policy_parameters.xlsx", sheet_name="Sheet2")
     sheet3 = pd.read_excel("asset_selling_policy_parameters.xlsx", sheet_name="Sheet3")
-    biasdf = pd.read_excel("asset_selling_policy_parameters.xlsx", sheet_name="Sheet4")
-    
+    # biasdf = pd.read_excel("asset_selling_policy_parameters.xlsx", sheet_name="Sheet4")
+    biasdf = pd.read_excel("asset_selling_policy_parameters.xlsx", sheet_name="Sheet4", index_col=0)
+
     
    
     policy_selected = sheet3['Policy'][0]
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     decision_names = ['sell', 'hold']
 
     
-    M = AssetSellingModel(state_names, decision_names, init_state,exog_params,T)
+    M = AssetSellingModel(state_names, decision_names, init_state, exog_params, T)
     P = AssetSellingPolicy(M, policy_names)
     t = 0
     prev_price = init_state['price']

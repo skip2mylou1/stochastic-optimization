@@ -31,9 +31,9 @@ class AssetSellingModel():
         biasdf = exog_params['biasdf']
         biasdf = biasdf.cumsum(axis=1)
         self.initial_args['exog_params'].update({'biasdf':biasdf})
-        #print(self.initial_args['exog_params']['biasdf'])
-        #print("\n")
-        #print(self.initial_args)
+        print(self.initial_args['exog_params']['biasdf'])
+        print("\n")
+        print(self.initial_args)
 
         
 
@@ -123,7 +123,7 @@ class AssetSellingModel():
                the exogenous info does not factor into the transition function)
         :return: dict - updated resource
         """
-        new_resource = 0 if decision.sell is 1 else self.state.resource
+        new_resource = 0 if decision.sell == 1 else self.state.resource
         return {"resource": new_resource}
 
     def objective_fn(self, decision, exog_info):
@@ -135,7 +135,7 @@ class AssetSellingModel():
                the exogenous info does not factor into the objective function)
         :return: float - calculated contribution
         """
-        sell_size = 1 if decision.sell is 1 and self.state.resource != 0 else 0
+        sell_size = 1 if decision.sell == 1 and self.state.resource != 0 else 0
         obj_part =  self.state.price * sell_size
         return obj_part
 
